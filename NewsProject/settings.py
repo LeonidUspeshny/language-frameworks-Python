@@ -121,8 +121,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILER_DIRS = [
-    os.path.join(BASE_DIR, 'NewsProject/static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'NewsProject/static'),
+ #   "/var/www/static/",
 ]
 
 # Default primary key field type
