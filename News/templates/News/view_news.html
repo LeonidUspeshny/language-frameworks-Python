@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
-
 {% block title %}
     {{ title }} :: {{ block.super }}
 {% endblock %}
-
 {% block sidebar %}
     <div class="list-group">
         {% for cat in categories %}
@@ -12,13 +10,11 @@
     </div>
 {% include 'inc/_sidebar.html' %}
 {% endblock %}
-
 {% block content %}
-
                         <div class="card mb-3">
                             {{ forloop.counter}}
                                 <div class="card-header">
-                                    Категория: <a href="{{ item.category.get_absolute.url }}">{{ news_item.category }}</a>
+                                    Категория: <a href="{{ news_item.category.get_absolute.url }}">{{ news_item.category }}</a>
                                 </div>
                                         <div class="card-body">
                                             {% if item.photo %}
@@ -36,7 +32,5 @@
                                         {{ news_item.created_at|date:'Y-m-d H:i' }}
                                     </div>
                         </div>
-
-
 {% endblock %}
 

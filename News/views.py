@@ -20,7 +20,7 @@ class HomeNews(ListView):
         return News.objects.filter(is_published=True)
 
 
-class NewsByCayegory(ListView):
+class NewsByCategory(ListView):
     model = News
     template_name = 'News/home_news_list.html'
     context_object_name = 'news'
