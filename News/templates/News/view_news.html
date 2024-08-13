@@ -11,11 +11,12 @@
 {% include 'inc/_sidebar.html' %}
 {% endblock %}
 {% block content %}
-                        <div class="card mt-3">
+                        <div class="card mb-3">
                             {{ forloop.counter}}
                                 <div class="card-header">
                                     Категория: <a href="{{ news_item.category.get_absolute.url }}">{{ news_item.category }}</a>
                                 </div>
+
                                         <div class="card-body">
                                             {% if item.photo %}
                                             <img src="{{ news_item.photo.url }}" class="mr-3" width="350" alt="Photo">

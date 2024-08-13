@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block sidebar %}
-{% include 'inc/_sidebar.html' %}
+    {% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 {% block content %}
+{{ mixin_group }}
                     {% for item in news %}
                         <div class="card mb-3" style="width: 1300px;">
                             {{ forloop.counter}}

@@ -9,6 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', include('News.urls')),
     path('', include('start.urls')),
+    path('politic/', include('politic.urls')),
+    path('sport/', include ('sport.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

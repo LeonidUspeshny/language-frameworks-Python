@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
+
 from News.views import (HomeNews, NewsByCategory, ViewNews, AddNews)
 # from News.views import index, get_category, view_news, add_news
 

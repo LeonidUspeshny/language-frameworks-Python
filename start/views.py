@@ -2,7 +2,14 @@ from django.shortcuts import render
 
 
 def start(request):
-    return render(request, 'start/start.html')
+    data = {'title': 'Стартовая страница', 'values': ['Some', 'Helo', '123'],
+    'obj': {
+        'car': 'BMW',
+        'age': 18,
+        'hobby': 'Football'
+    }
+    }
+    return render(request, 'start/start.html', data)
 
 
 def about(request):

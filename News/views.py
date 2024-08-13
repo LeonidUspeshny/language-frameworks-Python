@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
+from .utils import MyMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import News, Category
 from .forms import NewsForm
 
 
-class HomeNews(ListView):
+class HomeNews(ListView, MyMixin):
     model = News
     context_object_name = 'name'
     template_name = "News/home_news_list.html"
@@ -20,7 +22,7 @@ class HomeNews(ListView):
         return News.objects.filter(is_published=True).select_related('category')
 
 
-class NewsByCategory(ListView):
+class NewsByCategory(ListView, MyMixin):
     model = News
     template_name = 'News/home_news_list.html'
     context_object_name = 'news'
@@ -38,23 +40,22 @@ class NewsByCategory(ListView):
 class ViewNews(DetailView):
     model = News
     context_object_name = 'news_item'
-
+    template_name = 'News/add_news.html'
+    login_url = '/admin/'
 
 class AddNews(CreateView):
     form_class = NewsForm
     template_name = 'News/add_news.html'
 
 
-
-
-# def index(request):
-#     news = News.objects.all()
-#     categories = Category.objects.all()
-#     context = {
-#         'news': news,
-#         'title': 'Список новостей',
-#     }
-#     return render(request, 'News/index.html', context=context)
+    # def index(request):
+    # news = News.objects.all()
+    # categories = Category.objects.all()
+    # context = {
+    #     'news': news,
+    #     'title': 'Список новостей',
+    # }
+    # return render(request, 'News/index.html', context=context)
 
 
 # def get_category(request, category_id):
