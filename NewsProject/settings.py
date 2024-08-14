@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'start',
     'politic',
     'sport',
+    'Register',
 
 
 ]

@@ -17,5 +17,6 @@ urlpatterns = [
     path('register', register, name='Register'),
     path('login', login, name='Login'),
 
+
 ]
 
