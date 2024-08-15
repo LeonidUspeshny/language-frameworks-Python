@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -82,6 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NewsProject.wsgi.application'
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 
 # Database
@@ -145,3 +146,10 @@ MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 MEDIA_ROOT = '/media/'
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+# CASHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': os.path.join((BASE_DIR, 'django_cache')
+#     }
+# }
