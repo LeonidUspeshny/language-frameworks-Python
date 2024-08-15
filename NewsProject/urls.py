@@ -12,8 +12,11 @@ urlpatterns = [
     path('politic/', include('politic.urls')),
     path('sport/', include('sport.urls')),
     path('register/', include('Register.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('captcha/', include('captcha.urls')),
+]
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
