@@ -82,7 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NewsProject.wsgi.application'
-CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 
 # Database

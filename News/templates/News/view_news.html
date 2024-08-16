@@ -1,37 +1,36 @@
 {% extends 'base.html' %}
+
 {% block title %}
     {{ title }} :: {{ block.super }}
 {% endblock %}
+
 {% block sidebar %}
-    <div class="list-group">
-        {% for cat in categories %}
-        <a href="{% url 'Category' cat.pk %}" class="list-group-item list-group-item-action">{{ cat.title }}</a>
-        {% endfor %}
-    </div>
 {% include 'inc/_sidebar.html' %}
 {% endblock %}
 {% block content %}
-                        <div class="card mb-3">
-                            {{ forloop.counter}}
-                                <div class="card-header">
-                                    Категория: <a href="{{ news_item.category.get_absolute.url }}">{{ news_item.category }}</a>
-                                </div>
-
-                                        <div class="card-body">
-                                            {% if item.photo %}
-                                            <img src="{{ news_item.photo.url }}" class="mr-3" width="350" alt="Photo">
-                                            {% else %}
-                                            <h6>Фото нет</h6>
-                                            {% endif %}
-                                        </div>
-
-                                                    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ news_item.title }}</h5>
-                                                    {% autoescape off %}
-                                                    <p class="card-text">{{ news_item.content|linebreaks }}</p>
-                                                    {% endautoescape %}
-                                    <div class="card-footer text-body-secondary">
-                                        {{ news_item.created_at|date:'Y-m-d H:i' }}
-                                    </div>
-                        </div>
+<div class="card mb-3" style="width: 1300px;">
+    {{ forloop.counter}}
+    <div class="card-header">
+        Категория: <a href="{{ news_item.category.get_absolute.url }}">{{ news_item.category }}</a>
+    </div>
+    <div class="card-body">
+        {% if item.photo %}
+        <img src="{{ news_item.photo.url }}" class="mr-3" width="350" alt="Photo" height="200" style="margin-left: 380px;">
+        {% else %}
+        <h6>Фото нет</h6>
+        {% endif %}
+    </div>
+    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}" style="margin-left: 600px; margin-top: 20px;">{{ news_item.title }}</h5>
+    {% autoescape off %}
+    <div class="content" style="margin: 15px; ">
+      <p class="card-text">{{ news_item.content|linebreaks }}</p>
+    </div>
+    {% endautoescape %}
+    <div class="card-footer text-muted">
+        <div class="date" style="margin-left: 600px">
+                 {{ news_item.created_at|date:'Y-m-d H:i' }}
+        </div>
+    </div>
+</div>
 {% endblock %}
 

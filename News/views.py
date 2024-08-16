@@ -1,30 +1,30 @@
 from django.contrib import messages
-from django.contrib.auth import logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
-
-from Register.forms import NewsForm, UserLoginForm
 from .utils import MyMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login,logout
+
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegisterForm()
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your registration is success')
-            return redirect('Login')
+            user = form.save()
+            login(request, user)
         else:
             messages.error(request, 'Registration error!')
     else:
         form = UserRegisterForm()
-    return render(request, 'News/register.html', {'form': form})
+    return render(request, 'Register/register.html', {'form': form})
 
 
 def user_login(request):
@@ -32,15 +32,16 @@ def user_login(request):
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request)
+            login(request, user)
             return redirect('Home')
     else:
         form = UserLoginForm()
     return render(request, 'Register/login.html', {'form': form})
 
 
-def login(request):
-    return render(request, 'News/login.html')
+def user_logout(request):
+    logout(request)
+    return redirect('Login')
 
 
 class HomeNews(ListView, MyMixin):
@@ -87,14 +88,7 @@ class AddNews(CreateView):
     login_url = '/admin/'
 
 
-def user_logout(request):
-    logout(request)
-    return redirect('Login')
-
-
-
-
-    # def test(request):
+# def test(request):
     #     objects = ['john', 'paul', 'george', 'ringo', 'john2', 'paul2', 'george2', 'ringo2']
     #     paginator = Paginator(objects, 2)
     #     page_num = request.Get.get('page', 1)
@@ -102,7 +96,7 @@ def user_logout(request):
     #     return render(request, 'News/test.html', {'page_obj': page_objects})
 
 
-    # def index(request):
+# def index(request):
     # news = News.objects.all()
     # categories = Category.objects.all()
     # context = {

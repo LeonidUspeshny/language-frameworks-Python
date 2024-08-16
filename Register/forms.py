@@ -27,8 +27,8 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label="Имя пользователя", help_text='Максимум 150 символов',
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label="Пароль",
-                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    captcha = CaptchaField()
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
 
 
 class NewsForm(forms.ModelForm):
